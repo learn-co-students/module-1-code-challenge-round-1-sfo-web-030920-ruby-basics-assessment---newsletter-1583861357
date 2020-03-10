@@ -1,9 +1,7 @@
-require 'pry'
 
 #########################
 # Data for the newsletter
 #########################
-require "pry"
 CAMPUS = {
   "name": "DC",
   "address": "1440 G St NW, Washington, DC 20005",
@@ -27,76 +25,53 @@ ARTICLES = [
 # Methods to generate the newsletter
 #########################
 
-def calculate_recipients
-<<<<<<< HEAD
-  # TODO (Step 3) - Fix, not working
-  SUBSCRIBERS.reject do |email|
-    UNSUBSCRIBED.include?(email)
-  end
-=======
+def calculate_recipients(subscribers, unsubscribed)
   # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
   # write a method that will return an array of only the subscribers who haven't unsubscribed
->>>>>>> ddeb599f001325211b904096b1e91772e45d5643
+  counter = 0
+  combined = subscribers.concat(unsubscribed)
+  newarray = []
+  while counter < unsubscribed.length
+    if combined.include?(unsubscribed[counter])
+        combined.delete(unsubscribed[counter])
+    end
+    counter += 1
+  end
+  puts combined
 end
 
-def first_n_articles(number_of_articles
-  ARTICLES.first(number_of_articles)
+def first_n_articles(number_of_articles)
+  newarray = []
+  counter = 0
+  ARTICLES.map do |value|
+    if counter < number_of_articles.to_i
+      puts value[:title] + "\n"
+      puts "By: " + value[:author] + "\n"
+      puts value[:text] + "\n"
+
+    end
+    counter += 1
+  end
 end
 
 def print_recipients
-  # Write a method that uses the output of calculate_recipients
-  # and returns a list of emails separated by commas
-  # Ex) "abc@email.com, def@email.com, ghi@email.com"
+  puts calculate_recipients(SUBSCRIBERS, UNSUBSCRIBED)
 end
 
 def print_one_article(article)
-<<<<<<< HEAD
-  # TODO (Step 4) - format article with title, byline, and text
-  puts "#{article[:title]}"
-  puts "by: #{article[:author]}"
-  puts "#{article[:text]}"
-  puts ""
-end
-
-def print_many_articles(articles)
-  # TODO (Step 5) - should print all the articles, not just the first one
-  articles.each do |article|
-    print_one_article(article)
-  end
-  # print_one_article(articles.first)
-end
-
-def print_newsletter(number)
-  puts "Generating this week's newsletter..."
-  puts ""
-  print "Subject: "
-  print_subject
-  print "Recipients: "
-  print_recipients
-  puts "Body:"
-  puts "#{format_campus_location(CAMPUS)} Newsletter - #{format_week}"
-  articles = first_n_articles(number)
-  print_many_articles(articles)
-  puts format_footer(CAMPUS)
-=======
   # Write a method that will take an article hash
   # and print the title, author and text as a formatted string
   # See the README/sample output for examples
+
 end
 
 def print_many_articles(articles)
   # Write a method that will take in an array of article hashes
   # and format each one using the print_one_article method
->>>>>>> ddeb599f001325211b904096b1e91772e45d5643
 end
 
 def format_campus_location(campus)
-<<<<<<< HEAD
-  # TODO (Step 2) - Fix, not showing name.
   "Flatiron #{campus[:name]}"
-=======
-  "Flatiron #{campus["name"]}"
->>>>>>> ddeb599f001325211b904096b1e91772e45d5643
 end
 
 def format_subject
@@ -121,23 +96,6 @@ def print_newsletter(number)
   articles = first_n_articles(number)
   print_many_articles(articles)
   puts format_footer(CAMPUS)
-
-<<<<<<< HEAD
-def generate_newsletter(input)
-  if input == nil
-    # if there's no input number specified, print just the first 3 articles
-    print_newsletter(3)
-  elsif input.to_i < 1 || input.to_i.class != Integer
-    p "Input should be a number more than 0"
-  else
-    # if a number of articles is specified, print that many articles
-    # TODO (Step 6) - Fix, not working 
-    
-    number_of_articles = input.to_i
-    print_newsletter(number_of_articles)
-=======
->>>>>>> ddeb599f001325211b904096b1e91772e45d5643
-  end
 end
 
 def run
